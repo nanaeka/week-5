@@ -77,6 +77,102 @@ Definisi Express adalah salah satu package NodeJS yang memungkinkan kita untuk m
 
     app.get('/hello', (req, res) => { res.status(200).json({ "name" : "nana eka", "age' : 22, "greeting" : "Halo salam kenal" }) })
 
+**Query** merupakan parameter yang digunakan untuk membantu menentukan tindakan yang lebih spesifik.
+     app.get('/hello', (req, res) => { let name = req.query.name let age = req.query.age
+     res.status(200).json({
+         name : name,
+         age : age,
+         greetings : "Halo salam kenal"
+     })
+     })
+
+
+**Parameter** merupakan value yang digunakan untuk membantu menentukan tindakan yang lebih spesifik
+
+    app.get('/hello/:name/:age', (req, res) => { let name = req.params.name let age = req.params.age
+    res.status(200).json({
+        name : name,
+        age : age,
+        greetings : "Halo salam kenal"
+    })
+    })
+
+Nested Route 
+
+Sebelum :
+
+    app.get('/hello/nana', (req, res) => { res.send("Halo saya nana") })
+    app.get('/hello/eka', (req, res) => { res.send("Halo saya eka") })
+
+Sesudah :
+
+    app.use("/hello", hello)
+    const express = require('express') const hello = express.Router()
+    hello.get('/nana', (req, res) => { res.send("Halo saya nana") })
+    app.get('/eka', (req, res) => { res.send("Halo saya eka") })
+
+ # Middleware
+Middleware function adalah sebuah fungsi yang memiliki akses ke object request (req), object response (res), dan sebuah fungsi next didalam request-response cycle.
+
+Fungsi Middleware Menjalankan Kode Selanjutnya 
+     const express = require('express') const app = express()
+     const skilvulLogger = function (req, res, next) => { console.log("Halo skilvul, request diterima") next() }
+     app.use(skilvulLogger)
+     app.get('/', function (req, res) { res.send('Hello Skilvul!') })
+     app.listen(3000)
+
+Memodifikasi Object Request dan Object Response 
+      const express = require('express') 
+      const app = express()
+      const addRequestTime = function (req, res, next) => { req.requestTime = Date.now() next() }
+      app.use(addRequestTime)
+      app.get('/', function (req, res) { let responseText = 'Hello World
+      ' responseText += 'Requested at: ' + req.requestTime + '' res.send(responseText) })
+      app.listen(3000)
+
+Menghentikan Request-Response Cycle 
+      const express = require('express') 
+      const app = express()
+      const stopHere = function (req, res, next) => { res.send("
+      request stop from middleware
+      ") }
+      app.use(stopHere)
+      app.get('/', function (req, res) { let responseText = 'Hello Skilvul!' res.send(responseText) })
+      app.listen(3000)
+
+Cara Penggunaan Application Level Middleware 
+     const addRequestTime = funtion (req, res, next) { req.requestTime = Date.now() next() }
+     app.user(addRequestTime) Router Level Middleware const express = require('express') 
+     const UserRouter = express.Router() const AdminRouter = express.Router()
+     const logUserAction = function(req, res, next) { const username = req.body.username
+     console.log(`username ${username} access the API`)
+     next()
+     }
+     userRouter.use(logUserAction)
+     UserRouter.get('/users', function(req, res) { res.send('all user data') })
+     AdminRouter.get('/admins', function(req, res) { res.send('all admin data') }) Error Handling Middleware 
+     const express = require('express') const app = express()
+     const errorHandling = function(err, req, res, next) { console.error(err.stack) res.status(500).send('Something broke') }
+     app.use(errorHandling)
+
+## Design Database With MySQL
+
+**menentukan Entity**
+ Design Database Menentukan Entity Berikut adalah contoh studi kasus yang bisa dijadikan entity dalam database:
+
+User Film Genre Menentukan Attributes dari Entity User id int NOT NULL name varchar(255) email varchar(255) password varchar(255)
+
+Film id int NOT NULL name varchar(255) release_date date
+
+Genre id int NOT NULL name varchar(255) Menentukan Relasi antar Entity User & Film (Many to Many) Film & Genre (Many to Many) User id int NOT NULL name varchar(255) email varchar(255) password varchar(255)
+
+UserFilmFavorite id int NOT NULL userId int filmId int
+
+Film id int NOT NULL name varchar(255) release_date date
+
+FilmGenre id int NOT NULL filmId int genreId int
+
+Genre id int NOT NULL name varchar(255)
 
 
 
