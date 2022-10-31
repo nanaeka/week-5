@@ -158,6 +158,7 @@ Cara Penggunaan Application Level Middleware
 ## Design Database With MySQL
 
 **menentukan Entity**
+
  Design Database Menentukan Entity Berikut adalah contoh studi kasus yang bisa dijadikan entity dalam database:
 
 User Film Genre Menentukan Attributes dari Entity User id int NOT NULL name varchar(255) email varchar(255) password varchar(255)
