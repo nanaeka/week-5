@@ -24,14 +24,65 @@ Terdiri dari dua:
  
 Macam - macam **response codes** : 
 
-    - 200 (OK) => standar response untuk HTTP request yang sukses
-    - 201 (CREATED) =>  response sbuah HTP request biasanya POST dimana hasil dari item berhasil dibuat atau ditambahkan
-    - 204 (NO CONTENT) => response sbuah HTP request biasanya DELETE dimana hasil dari item berhasil dihapus dan tidak tampil
-    - 400 (BAD REQUEST)
-    - 403 (FORBIDDEN) => user tidak dapat mengakses walaupun data user terdata, karena adanya authorization
-    - 404 (NOT FOUND) => data atau konten tidak ditemukan atau belum ada
-    - 500 (INTERNAL SERVICE ERROR)
+ - 200 (OK) => standar response untuk HTTP request yang sukses
+ - 201 (CREATED) =>  response sbuah HTP request biasanya POST dimana hasil dari item berhasil dibuat atau ditambahkan
+ - 204 (NO CONTENT) => response sbuah HTP request biasanya DELETE dimana hasil dari item berhasil dihapus dan tidak tampil
+ - 400 (BAD REQUEST)
+ - 403 (FORBIDDEN) => user tidak dapat mengakses walaupun data user terdata, karena adanya authorization
+ - 404 (NOT FOUND) => data atau konten tidak ditemukan atau belum ada
+ - 500 (INTERNAL SERVICE ERROR)
     
 ## Intro Node JS 
 
   Definisi Node.js adalah platform JavaSCript yang dapat berjalan di backend atau server-side di komputer secara langsung. Node.js berjalan menggunakan V8 engine pada Chrome, SpiderMonkey engine pada Mozilla, dan Chakra engine pada Microsoft Edge.
+
+# Node JS Architecture
+
+- **Single Thread** thread adalah setiap unit yang mampu mengeksekusi kode. Javascript menggunakan konsep single thread, yang berarti hanya memiliki satu tumpukan panggilan yang digunakan untuk menjalankan program dengan menggunakan call stack untuk manajememnnya
+- **Even Loop** javascript dapat menggunakan multi thread yang terdapat enevt queue yang berguna sebagai penampung ketika terdapat perintah baru yang akan dieksekusi. Event loop akan memfasilitasi kondisi ini, event loop akan memeriksa terus menerus, ketika antrian kosong di call stack maka akan menambah antrian baru dari event queue sampai semua perintah selesai di eksekusi.
+- **Server Side Scripting** untuk menampilkan hasil eksekusi javascript biasanya hanya bisa di browser, dengan Node JS dapat menjalankan javascript di server side dengan terminal command line perintah "node"
+
+# Build In Module Node JS
+
+- **Console** module bawaan dari javascript yang ada di node JS untuk digunakan sebagai debug atau menampilkan code secara interface
+- **Process** adalah modules yang digunakan untuk menampilkan dan mengontrol prosess Node JS yang sedang dijalankan
+- **OS** module merupakan module yang digunakan untuk menyediakan informasi terkait sistem operasi komputer yang digunakan user
+- **Util** Module Util merupakan alat bantu / utilities untuk mendukung kebutuhan internal API di Node JS
+- **Errors** merupakan modules yang dapat digunakan untuk mendefinisikan error di Node JS sehingga lebih informatif. Kita juga dapat menghandle error menggunakan try catch
+- **Buffer** merupakan modules yang digunakan untuk mengakses, mengelola dan mengubah tipe data raw atau tipe data bytes
+- **Fs** atau “file system” merupakan module yang dapat membantu berinteraksi dengan file yang ada diluar code. FS paling sering digunakan untuk membaca file dengan ekstensi .txt, .csv, dan .json
+- **Timers** merupakan modules yang digunakan untuk melakukan scheduling atau mengatur waktu pemanggilan fungsi yang dapat diatur di waktu tertentu
+
+# Node JS Web Server
+- Untuk menggunakan modul HTTP, gunakan **require()**
+- Gunakan **method createServer()** untuk membuat server HTTP
+- Callback function yang digunakan pada **method http.createServer()**, akan dijalankan ketika seseorang mencoba mengakses komputer pada port 8080.
+
+## Express JS
+
+Definisi Express adalah salah satu package NodeJS yang memungkinkan kita untuk membuat HTTP REST API ataupun aplikasi web dengan mudah.
+
+# response
+      status code : 200 body : application/json { "name" : "nana eka", "age" : 22, "greeting" : "hello salam kenal" }
+
+
+ Instalasi Express merupakan modules atau package yang dikembangkan menggunakan bahasa javascript. npm init -y npm install express --save Nodemon merupakan modules atau package yang mempermudah develope server side application yaitu automatis menjalankan server ketika ada perubahan. npm install -g nodemon Routing Basic Syntax ExpressJS const express = require('express') const app = express() const port = 3000
+
+    app.get('/', (req, res) => { res.send('Hello World!') })
+    app.listen(port, () => { console.log('Server is running on port 3000') })
+
+ Basic Routes Routes Routes adalah sebuah endpoint yang dapat kita akses menggunakan URL di website. Didalam routes kita perlu menentkan method API, alamat dan response apa saja yang akan dikeluarkan. app.get('/', (req, res) => { res.send('Hello World') })
+
+**POST PUT PATCH DELETE** Response Dalam route kita dapat mengirim response menggunakan perintah res.write() untuk mengirim plain text ketika mengakses route tersebut. Contohnya seperti berikut :
+
+    app.get('/hello', (req, res) => { res.status(200).json({ "name" : "nana eka", "age' : 22, "greeting" : "Halo salam kenal" }) })
+
+
+
+
+
+
+
+
+
+
