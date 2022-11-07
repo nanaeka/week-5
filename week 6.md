@@ -157,11 +157,15 @@ Teknik mengelompokkan dan mengorganisasikan atribut/kolom/field data sehingga te
 
 - **Join Multiple Tables**
 
+ambil records dari dua atau lebih table database yang memiliki hubungan atau relasi, dan ditampilkan dalam satu set data.
+
   - INNER JOIN semua baris akan diambil dari kedua tabel yang akan di JOIN, selama kolom cocok dengan kondisi yang sudah ditentukan.
   - LEFT JOINbsemua record dari table di sisi kiri JOIN statement akan dipilih, jika tidak cocok maka akan bernilai NULL.
   - RIGHT JOIN semua records dari table di sisi kiri JOIN statement akan dipilih, bahkan jika table di sebelah kiri tidak memiliki record yang cocok.
 
 - **Aggregate Functions**
+
+ambil suatu nilai pada suatu pengkodisian setelah adanya perhitungan set value atau kumpulan nilai/data.
 
   - MAX mengembalikan nilai terbesar dari kolom yang dipilih.
   - MIN mengembalikan nilai terkecil dari kolom yang dipilih.
@@ -169,18 +173,58 @@ Teknik mengelompokkan dan mengorganisasikan atribut/kolom/field data sehingga te
   - COUNT mengembalikan jumlah baris yang cocok dengan kriteria yang ditentukan.
   - AVG mengembalikan nilai rata - rata kolom numerik.
 
-- **Authentication & Authorization**
 
-  - Authentication proses pengenalan identitas user lalu diberikan akses sesuai dengan authorisasi yang diterima.
-  - Authorization proses penentuan hak akses terhadap user dalam mengambil atau melakukan suatu tindakan dalam sistem.
+# Authentication & Authorization (Express JS Middleware)
 
+### Authentication
 
+ Authentication proses pengenalan identitas user lalu diberikan akses sesuai dengan authorisasi yang diterima.
 
+- **Metode authentication yang berbasis pada kerahasiaan informasi (Knowledge)** 
+   - Password/PIN
+   - Digital Certificate : asymmentric cryptography based mengandung informasi rahasia
+   - Private key : Owner yang tahu, user biasa lain hanya tahu Public Key
 
+- **Metode authentication yang berbasis pada keunikan (Inherence)**
+   - Retina
+   - Fingerprint
+   - foto paspor
+   - Tanda tangan
+   - Voice patterns
 
+- **Metode authentication yang berbasis pada user miliki (Posession)**
+   - Phone
+   - Smart Card
 
+### Authorization
 
+ Authorization proses penentuan hak akses terhadap user dalam mengambil atau melakukan suatu tindakan dalam sistem.
+Jadi tanpa authentication tidak ada authorization. namun beberapa sistem ada yang menerapkan pengguna yang tidak ter-otentikasi (anonymous guest) tetap dapat menikmati service sistem tertentu dengan akses sangat terbatas.
 
+ - Client sebelum bisa menikmati layanan server harus melalui proses authentication
+ - Setelah authentication berhasil akan terjalin hubungan trust antara client dan server (1 x authentication) kecuali logout.
+ - Apabila ada service request, server akan menghubungi system authorization untuk menentukan apakah client berhak atas service yang di request
  
  
+### JSON Web Token (JWT)
+
+Sebuah JSON Object sebagai cara aman untuk mewakili sekumpulan informasi antara dua pihak.
+
+Token terdiri dari *Header, Content dan Signature :*
+
+   Header { "alg": "HS256", "typ": "JWT" }
+
+   Payload { "id": 1, "name": "Nana Eka", "age": 21, "phone_number": "085765492908" "iat": 1516239022 }
+
+   Signature HMACSHA256( BASE64URL(header). BASE64URL(payload), secret)
+
  
+**Cara Pakai**
+
+   const jwt = require("jsonwebtoken")
+
+   const token = jwt.sign({userData}, "key-ditulis-terserah")
+
+   res.json(token)
+   
+   
