@@ -155,15 +155,24 @@ Teknik mengelompokkan dan mengorganisasikan atribut/kolom/field data sehingga te
   - 3NF. Dimana seluruh field/atribut/kolom yang tidak ada relasi atau hubungan dengan primary key dihilangkan. dan tidak adanya ketergantungan transitif, dimana suatu   kolom tergantung dengan kolom lain (selain primary key)
 
 
-### Join Multiple Tables
+- **Join Multiple Tables**
 
- *INNER JOIN* semua baris akan diambil dari kedua tabel yang akan di JOIN, selama kolom cocok dengan kondisi yang sudah ditentukan.
+  - INNER JOIN semua baris akan diambil dari kedua tabel yang akan di JOIN, selama kolom cocok dengan kondisi yang sudah ditentukan.
+  - LEFT JOINbsemua record dari table di sisi kiri JOIN statement akan dipilih, jika tidak cocok maka akan bernilai NULL.
+  - RIGHT JOIN semua records dari table di sisi kiri JOIN statement akan dipilih, bahkan jika table di sebelah kiri tidak memiliki record yang cocok.
 
- *LEFT JOIN* semua record dari table di sisi kiri JOIN statement akan dipilih, jika tidak cocok maka akan bernilai NULL.
+- **Aggregate Functions**
 
- *RIGHT JOIN* semua records dari table di sisi kiri JOIN statement akan dipilih, bahkan jika table di sebelah kiri tidak memiliki record yang cocok.
+  - MAX mengembalikan nilai terbesar dari kolom yang dipilih.
+  - MIN mengembalikan nilai terkecil dari kolom yang dipilih.
+  - SUM mengembalikan jumlah total kolom numerik.
+  - COUNT mengembalikan jumlah baris yang cocok dengan kriteria yang ditentukan.
+  - AVG mengembalikan nilai rata - rata kolom numerik.
 
+- **Authentication & Authorization**
 
+  - Authentication proses pengenalan identitas user lalu diberikan akses sesuai dengan authorisasi yang diterima.
+  - Authorization proses penentuan hak akses terhadap user dalam mengambil atau melakukan suatu tindakan dalam sistem.
 
 
 
