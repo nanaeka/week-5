@@ -42,36 +42,59 @@ Adalah sistem manajemen database relasional (Relational Database Management Syst
 Merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan struktur dan definisi metadata dari objek - objek database.
 
 - **Membuat table pada database**
-  CREATE TABLE mahasiswas ( id int NOT NULL, fullName varchar(255) NOT NULL, age int, PRIMARY KEY (id) );
+
+    CREATE TABLE mahasiswas ( id int NOT NULL, fullName varchar(255) NOT NULL, age int, PRIMARY KEY (id) );
   
 *Alter* digunakan untuk mengubah struktur dari table yang sudah ada. 
  **Contoh**
  
  **Menambah Primary Key**
-   ALTER TABLE mahasiswas ADD PRIMARY KEY (id)
+
+    ALTER TABLE mahasiswas ADD PRIMARY KEY (id)
  
 **Menambah Field**
-  ALTER TABLE mahasiswas ADD phoneNumber varchar(12)
+
+    ALTER TABLE mahasiswas ADD phoneNumber varchar(12)
 
 **Mengubah Struktur Tabel**
-  ALTER TABLE mahasiswas ALTER COLUMN phoneNumber varchar(13)
+  
+    ALTER TABLE mahasiswas ALTER COLUMN phoneNumber varchar(13)
 
 *DROP* digunakan untuk menghapus suatu database, table dan view atau index. 
+
 **Contoh** 
  
 **Menghapus Database**
-  DROP DATABASE data_sma
+  
+    DROP DATABASE data_sma
 
 **Menghapus Table**
-  DROP TABLE mahasiswas
  
+    DROP TABLE mahasiswas
  
+## (DML) Data Manipulation Language
  
+merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data data yang ada dalam database. 
  
- 
- 
- 
- 
+*SELECT* digunakan untuk menyeleksi data berdasarkan syarat yang diberikan.
+
+**Contoh**
+
+        SELECT * FROM mahasiswas
+
+        SELECT fullName FROM mahasiswas
+
+        SELECT DISTINCT age FROM mahasiswas
+
+        // DISTINCT digunakan untuk menhgilangkan duplikasi dari hasil query.
+
+        INSERT digunakan untuk menambahkan data pada kolom yang terdapat pada table. Contoh :
+
+        INSERT INTO mahasiswas VALUES ("Muhammad Zaid Abdillah", 21)
+
+        INSERT INTO mahasiswas (fullName, age, phoneNumber) VALUES ("Muhammad Zaid Abdillah", 21, "0851xxxxxx74")
+
+
  
  
  
