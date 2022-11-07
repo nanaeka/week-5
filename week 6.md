@@ -4,17 +4,18 @@
 
 ## Database
 
-merupakan kumpulan data yang disimpan secara sistematis di dalam komputer yang dapat diolah dan dimanipulasi.
+ merupakan kumpulan data yang disimpan secara sistematis di dalam komputer yang dapat diolah dan dimanipulasi.
 Database Management System (DBMS) merupakan software untuk user berkomunikasi dengan data yang ada dalam media penyimpanan.
 Tipe utama pada Database management System antara lain, Hierarchical, Network, Relational, Non Relational, and Object Oriented.
+
 **DBMS** sistem penorganisasian dan sistem pengolahan Database pada komputer. DBMS atau database management system ini merupakan perangkat lunak (software) yang dipakai untuk membangun basis data yang berbasis komputerisasi.
 
- **Table** adalah kumpulan value terbuat dari baris dan kolom yang berisi atribut dari sebuah data.
+  **Table** adalah kumpulan value terbuat dari baris dan kolom yang berisi atribut dari sebuah data.
 
- **Field** adalah kolom dari sebuah table dengan tiap field memiliki tipe data masing - masing.
+  **Field** adalah kolom dari sebuah table dengan tiap field memiliki tipe data masing - masing.
 
- **Record** adalah kumpulan nilai yang saling terkait atau bisa dibilang isi dari sebuah table.
- 
+  **Record** adalah kumpulan nilai yang saling terkait atau bisa dibilang isi dari sebuah table.
+
  
  **Structured Query Language (SQL) merupakan suatu bahasa untuk melakukan interaksi di Relational Database Management System (RDBMS)**
   
@@ -212,19 +213,61 @@ Sebuah JSON Object sebagai cara aman untuk mewakili sekumpulan informasi antara 
 
 Token terdiri dari *Header, Content dan Signature :*
 
-   Header { "alg": "HS256", "typ": "JWT" }
+       Header { "alg": "HS256", "typ": "JWT" }
 
-   Payload { "id": 1, "name": "Nana Eka", "age": 21, "phone_number": "085765492908" "iat": 1516239022 }
+       Payload { "id": 1, "name": "Nana Eka", "age": 21, "phone_number": "085765492908" "iat": 1516239022 }
 
-   Signature HMACSHA256( BASE64URL(header). BASE64URL(payload), secret)
+       Signature HMACSHA256( BASE64URL(header). BASE64URL(payload), secret)
 
  
-**Cara Pakai**
+**Instalasi dan Cara Pakai**
 
-   const jwt = require("jsonwebtoken")
+       npm install jsonwebtoken
 
-   const token = jwt.sign({userData}, "key-ditulis-terserah")
+       const jwt = require("jsonwebtoken")
 
-   res.json(token)
-   
-   
+       const token = jwt.sign({userData}, "key-ditulis-terserah")
+
+       res.json(token)
+
+  
+# Sequelize
+
+ Sequelize adalah ORM (Object Relational Mapping) yang berbasis promise.
+ 
+Sequelize mendukung sebagian besar relational Database seperti :
+
+  - MySQL
+  - PostgreSQL
+  - MariaDB
+  - SQLite
+  - Microsoft SQL Server
+
+### ORM (Object Relational Mapping)
+
+teknik mengubah suatu tabel/entity menjadi sebuah object yang nantinya mudah untuk digunakan. Object yang dibuat memiliki property yang sama dengan fiel-field yang ada pada tabel/entity tsb. ORM memungkinkan untuk melakukan query dan manipulasi data pada database menggunakan object oriented.
+
+- **Tujuan** mempermudah mengakses database tanpa melakukan query sama sekali
+
+### Instalasi 
+
+         npm install --save sequelize
+
+         npm install --save mysql2
+
+         npx sequelize-cli init
+
+### Generate Model ###
+
+        npx sequelize-cli model:generate --name Todo --attributes title:string,description:string,startTime:date,status:string
+
+        npx sequelize-cli db:migrate
+
+        npx sequelize-cli db:migrate:undo
+
+### Generate Seed ###
+
+        npx sequelize-cli seed:generate --name demo-todo
+
+        npx sequelize-cli db:seed:all npx sequelize-cli db:seed:undo
+
