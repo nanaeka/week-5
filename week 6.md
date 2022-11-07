@@ -144,18 +144,24 @@ Teknik mengelompokkan dan mengorganisasikan atribut/kolom/field data sehingga te
 
 - **Dampak TIDAK menggunakan Normalisasi :**
 
- - INSERT Anomali : tidak dapat memasukkan beberapa data secara langsung
- - DELETE Anomali : Penhapusan data tidak efektif dan tidak sesuai ekspektasi
- - UPDATE Anomali : data yang diubah terjadi inkonsistensi dalam database dan tidak efektif serta tidak sesuai ekspektasi.
+  - INSERT Anomali : tidak dapat memasukkan beberapa data secara langsung
+  - DELETE Anomali : Penhapusan data tidak efektif dan tidak sesuai ekspektasi
+  - UPDATE Anomali : data yang diubah terjadi inkonsistensi dalam database dan tidak efektif serta tidak sesuai ekspektasi.
 
 - **Bentuk Umum Normalisasi :**
 
-- 1NF. Dimana Setiap kolom bernilai tunggal (single value), memiliki nama yang unik. untuk menghilangkan adanya data ganda atau multiple value pada atribut sebuah  entity.
-- 2NF. Dimana sudah berbentuk 1NF, subset data yang terdapat pada entity dihapus dan diberikan aatribut terpisah.
-- 3NF. Dimana seluruh field/atribut/kolom yang tidak ada relasi atau hubungan dengan primary key dihilangkan. dan tidak adanya ketergantungan transitif, dimana suatu   kolom tergantung dengan kolom lain (selain primary key)
+  - 1NF. Dimana Setiap kolom bernilai tunggal (single value), memiliki nama yang unik. untuk menghilangkan adanya data ganda atau multiple value pada atribut sebuah  entity.
+  - 2NF. Dimana sudah berbentuk 1NF, subset data yang terdapat pada entity dihapus dan diberikan aatribut terpisah.
+  - 3NF. Dimana seluruh field/atribut/kolom yang tidak ada relasi atau hubungan dengan primary key dihilangkan. dan tidak adanya ketergantungan transitif, dimana suatu   kolom tergantung dengan kolom lain (selain primary key)
 
 
+### Join Multiple Tables
 
+ *INNER JOIN* semua baris akan diambil dari kedua tabel yang akan di JOIN, selama kolom cocok dengan kondisi yang sudah ditentukan.
+
+ *LEFT JOIN* semua record dari table di sisi kiri JOIN statement akan dipilih, jika tidak cocok maka akan bernilai NULL.
+
+ *RIGHT JOIN* semua records dari table di sisi kiri JOIN statement akan dipilih, bahkan jika table di sebelah kiri tidak memiliki record yang cocok.
 
 
 
