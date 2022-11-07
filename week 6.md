@@ -124,11 +124,35 @@ merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data da
  
  # MySQL Lanjutan
  
+ ### Relations di SQL
+
+  One to One One to Many Many to Many
  
+### Database Normalization 
 
+  Merupakan teknik analisis data yang mengorganisasikan atribut - atribut data dengan cara mengelompokkan sehingga terbentuk entitas yang non-redundant, stabil dan fleksibel.
 
+### Normalisasi
 
+Teknik mengelompokkan dan mengorganisasikan atribut/kolom/field data sehingga terbentuk suatu entitas, yang terhindar dari anomali.
 
+- **Tujuan :**
+
+  - terciptanya non-redundan data pada suatu database
+  - efisien dalam adanya perubahan struktur tabel/entity suatu database
+  - meminimalisir dampak apabila ada perubahan struktur tabel/entity suatu database.
+
+- **Dampak TIDAK menggunakan Normalisasi :**
+
+ - INSERT Anomali : tidak dapat memasukkan beberapa data secara langsung
+ - DELETE Anomali : Penhapusan data tidak efektif dan tidak sesuai ekspektasi
+ - UPDATE Anomali : data yang diubah terjadi inkonsistensi dalam database dan tidak efektif serta tidak sesuai ekspektasi.
+
+- **Bentuk Umum Normalisasi :**
+
+- 1NF. Dimana Setiap kolom bernilai tunggal (single value), memiliki nama yang unik. untuk menghilangkan adanya data ganda atau multiple value pada atribut sebuah  entity.
+- 2NF. Dimana sudah berbentuk 1NF, subset data yang terdapat pada entity dihapus dan diberikan aatribut terpisah.
+- 3NF. Dimana seluruh field/atribut/kolom yang tidak ada relasi atau hubungan dengan primary key dihilangkan. dan tidak adanya ketergantungan transitif, dimana suatu   kolom tergantung dengan kolom lain (selain primary key)
 
 
 
