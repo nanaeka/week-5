@@ -80,24 +80,63 @@ merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data da
 
 **Contoh**
 
-        SELECT * FROM mahasiswas
+        SELECT * FROM mahasiswa
 
-        SELECT fullName FROM mahasiswas
+        SELECT fullName FROM mahasiswa
 
-        SELECT DISTINCT age FROM mahasiswas
+        SELECT DISTINCT age FROM mahasiswa
 
         // DISTINCT digunakan untuk menhgilangkan duplikasi dari hasil query.
 
-        INSERT digunakan untuk menambahkan data pada kolom yang terdapat pada table. Contoh :
-
-        INSERT INTO mahasiswas VALUES ("Muhammad Zaid Abdillah", 21)
-
-        INSERT INTO mahasiswas (fullName, age, phoneNumber) VALUES ("Muhammad Zaid Abdillah", 21, "0851xxxxxx74")
-
-
+ *INSERT* digunakan untuk menambahkan data pada kolom yang terdapat pada table. 
  
+ **Contoh**
+
+        INSERT INTO mahasiswas VALUES ("Nana eka", 21)
+
+        INSERT INTO mahasiswas (fullName, age, phoneNumber) VALUES ("Nana eka", 21, "0851xxxxxx74")
+
+*WHERE, AND, OR, NOT, LIKE* digunakan untuk memberikan syarat dalam menampilkan data. 
+
+**Contoh**  
  
- 
+       SELECT fullName, phoneNumber FROM mahasiswas WHERE id >= 1 AND age >= 21 OR age < 23 NOT id > 4
+
+       SELECT * FROM mahasiswas WHERE fullName LIKE "%Nana"
+
+       SELECT * FROM mahasiswas WHERE fullName LIKE "Eka%"
+       
+*UPDATE* digunakan untuk melakukan perubahan dari kolom yang dipilih. 
+
+**Contoh** 
+
+     UPDATE mahasiswas SET age = 22 WHERE id = 1
+
+
+*DELETE* digunakan untuk menghapus data dalam table yang dipilih. 
+
+**Contoh**
+
+     DELETE FROM mahasiswas WHERE fullName = "Nana Eka"
+
+ORDER BY digunakan untuk mengurutkan data yang ditampilkan secara ASCENDING atau DESCENDING. Contoh : SELECT * FROM mahasiswas WHERE NOT id = 1 ORBER BY id DESC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  
  
