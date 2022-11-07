@@ -78,8 +78,6 @@ merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data da
  
 *SELECT* digunakan untuk menyeleksi data berdasarkan syarat yang diberikan.
 
-**Contoh**
-
         SELECT * FROM mahasiswa
 
         SELECT fullName FROM mahasiswa
@@ -89,16 +87,12 @@ merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data da
         // DISTINCT digunakan untuk menhgilangkan duplikasi dari hasil query.
 
  *INSERT* digunakan untuk menambahkan data pada kolom yang terdapat pada table. 
- 
- **Contoh**
 
         INSERT INTO mahasiswas VALUES ("Nana eka", 21)
 
         INSERT INTO mahasiswas (fullName, age, phoneNumber) VALUES ("Nana eka", 21, "0851xxxxxx74")
 
-*WHERE, AND, OR, NOT, LIKE* digunakan untuk memberikan syarat dalam menampilkan data. 
-
-**Contoh**  
+*WHERE, AND, OR, NOT, LIKE* digunakan untuk memberikan syarat dalam menampilkan data.  
  
        SELECT fullName, phoneNumber FROM mahasiswas WHERE id >= 1 AND age >= 21 OR age < 23 NOT id > 4
 
@@ -108,18 +102,29 @@ merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data da
        
 *UPDATE* digunakan untuk melakukan perubahan dari kolom yang dipilih. 
 
-**Contoh** 
-
      UPDATE mahasiswas SET age = 22 WHERE id = 1
 
 
 *DELETE* digunakan untuk menghapus data dalam table yang dipilih. 
 
-**Contoh**
-
      DELETE FROM mahasiswas WHERE fullName = "Nana Eka"
 
-ORDER BY digunakan untuk mengurutkan data yang ditampilkan secara ASCENDING atau DESCENDING. Contoh : SELECT * FROM mahasiswas WHERE NOT id = 1 ORBER BY id DESC
+*ORDER BY* digunakan untuk mengurutkan data yang ditampilkan secara ASCENDING atau DESCENDING.
+
+     SELECT * FROM mahasiswas WHERE NOT id = 1 ORBER BY id DESC
+     
+*GROUP BY* digunakan untuk menampilkan data berdasarkan kolom yang ditentukan.
+
+    SELECT * FROM mahasiswas WHERE NOT id = 1 GROUP BY name
+
+*LIMIT* digunakan untuk membatasi jumlah data yang tampil.
+
+    SELECT * FROM mahasiswas LIMIT 2
+ 
+ 
+ # MySQL Lanjutan
+ 
+ 
 
 
 
