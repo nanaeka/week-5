@@ -73,7 +73,7 @@ Merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan struktu
  
     DROP TABLE mahasiswas
  
-## (DML) Data Manipulation Language
+## DML Data Manipulation Language
  
 merupakan kumpulan perintah SQL yang digunakan untuk berinteraksi dengan data data yang ada dalam database. 
  
@@ -247,7 +247,9 @@ Sequelize mendukung sebagian besar relational Database seperti :
 
 teknik mengubah suatu tabel/entity menjadi sebuah object yang nantinya mudah untuk digunakan. Object yang dibuat memiliki property yang sama dengan fiel-field yang ada pada tabel/entity tsb. ORM memungkinkan untuk melakukan query dan manipulasi data pada database menggunakan object oriented.
 
-- **Tujuan** mempermudah mengakses database tanpa melakukan query sama sekali
+- **Tujuan** 
+
+mempermudah mengakses database tanpa melakukan query sama sekali
 
 ### Instalasi 
 
