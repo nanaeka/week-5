@@ -203,33 +203,144 @@ Maka data buku yang berjudul "Belajar MongoDB" sudah tiada.
 
 **install Mongoose** 
 
-              npm install mongoose.
+Install Mongoose npm install mongoose
 
-Koneksi ke database MongoDB, menyalakan terlebih dahulu MongoDB Caranya buka tab baru pada terminal lalu ketik mongod dan enter. Jika terdapat tulisan waiting for connections on port 2707 itu artinya database MongoDB sudah siap. Untuk contoh kasus menggunakan object mobil,
+Konfigurasi koneksi (buat folder config, didalamnya buat file db.js)
 
-Untuk mengakses database MongoDB dengan mongoose, maka tuliskan kode berikut ini pada server.js.
+              const mongoose = require('mongoose')
+
+              const db_url = 'mongodb://localhost:27017/{nama_db}'
+
+              const db = mongoose.connect(db_url)
+
+              module.exports = db;
+
+**Membuat Schema**
+
+Contoh membuat User Schema (buat folder models, didalamnya buat file user.js)
+
+              const mongoose = require("mongoose");
+
+              const { Schema } = mongoose
+
+              const userSchema = new Schema({ fullName: String, email: { type: String, required: true }, password: { type: String, required: true }, { timestamps: true               } })
+
+              const User = mongoose.model('User', userSchema)
+
+              module.exports = User
+
+**CRUD Mongoose*8
+
+GET data tanpa menampilkan field yang dipilih
+
+              let getAllUser = async(req, res) => { const users = await User.find({}, '-__v -password')
+
+              res.status(200).json(users)
+              }
+
+              let getUserByID = async(req, res) => { const id = await req.params.id const user = await User.findById(id).select("-__v -password")
+
+              res.status(200).json(user)
+              }
+              
+**POST data**
+
+              let addUser = (req, res) => { const data = req.body const user = new User(data) user.save()
+
+              res.status(201).json({message: "Data created"})
+              }
+
+**UPDATE data**
+
+              let updateUserByID = async(req, res) => { const id = await req.params.id const data = await req.body
+
+              await User.updateOne({_id: id}, {
+                  fullName: data.fullName,
+                  email: data.email,
+                  password: data.password
+              })
+
+              res.status(201).json({message: "Data updated"})
+              }
+
+DELETE data
+
+              let updateUserByID = async(req, res) => { const id = await req.params.id const data = await req.body
+
+              await User.updateOne({_id: id}, {
+                  fullName: data.fullName,
+                  email: data.email,
+                  password: data.password
+              })
+
+              res.status(201).json({message: "Data updated"})
+              }            
+              
+**Populate Mongoose**
+
+Menambahkan field user pada Schema Tugas.
+
+              const mongoose = require("mongoose");
+
+              const { Schema } = mongoose
+
+              const tugasSchema = new Schema({ name: String, isDone: Boolean, user: { type: mongoose.ObjectId, ref: "User" } })
+
+              const Tugas = mongoose.model('Tugas', tugasSchema)
+
+              module.exports = Tugas
+
+Menggunakan perintah .populate() pada tugascontroller untuk memunculkan data user yang disimpan.
+
+**getAllTugas:**
+              
+              async(req, res) => { const tugass = await Tugas.find().select("-__v").populate("user", "-__v -password")
+
+              res.status(200).json(tugass)
+              },
+
+**getTugasByID:**
+
+              async(req, res) => { const id = await req.params.id const tugas = await Tugas.findById(id).select("-__v").populate("user", "-__v password")
+
+              res.status(200).json(tugas)
+              },              
+              
+# Container & Docker
+
+  Docker adalah aplikasi untuk menyatukan berbagai file software dan pendukungnya dalam sebuah wadah (container) agar memudahkan proses pengembangan software.
+Dalam pengembangan aplikasi, developer memerlukan virtualisasi di server agar aplikasi bisa berjalan di berbagai platform dengan konfigurasi hardware yang berbeda-beda. Sayangnya, ketika menggunakan virtualisasi, harus menyiapkan satu sistem operasi secara penuh. Jika membutuhkan beberapa virtualisasi, server perlu resource yang besar.
+
+ container bisa digunakan sebagai alternatif virtualisasi sehingga tidak perlu menyiapkan sistem operasi secara penuh. Dengan container, ukuran file menjadi lebih kecil dibandingkan virtualisasi yang biasa digunakan.
  
-              mongoose.connect('mongodb://localhost/mobil');
+**Perbedaan Virtual Machine dengan Docker**
 
+- VM memakan banyak resource dan waktu untuk booting karena melakukan virtualisasi pada host hardware-nya.
 
+- Container melakukan virtualisasi pada host OS-nya sehingga tidak memakan banyak resource dan waktu.
 
+**Anatomi Docker**
 
+- Docker File merupakan blueprint untuk membuat image.
 
+- Image merupakan template untuk menjalankan container.
+ 
+- Container merupakan perwujudan dari image.
 
+- Docker Registry merupakan tempat untuk upload / download image. 
+ 
+ 
+ ## Dockerfile
+ 
+Dockerfile adalah sebuah file yang digunakan untuk membuat container image. sedangkan Docker Hub merupakan registry tempat penyimpanan docker image. Setelah membuat custom image dengan nama yang diinginkan, selanjutnya adalah bisa push image tersebut ke registry, salah satunya Docker Hub. Selanjutnya jika ingin menggunakan image tersebut, anda hanya perlu pull image tersebut ke server dari Docker Hub.
+ 
+ ## Docker Compose
+ 
+Docker-Compose adalah alat untuk mendefinisikan dan menjalankan satu atau beberapa container yang saling terkait dengan sebuah command. Pada implementasinya dapat menggunakannya dengan membuat sebuah file berekstensi yaml/yml yang di dalamnya terdapat konfigurasi-konfigurasi terhadap service aplikasi yang akan dijalankan. Gambaran sederhananya seperti menyatukan semua Dockerfile dari setiap service aplikasi ke dalam sebuah file yaml (docker-compose file), dan selanjutnya dengan sebuah command, bisa meng-create dan men-start semua service yang telah didefinisikan pada file yml tersebut. script konfigurasi nya juga sangat mudah dan mirip dengan argumen-argumen saat ingin menjalankan sebuah Dockerfile. bisa menggunakannya di semua lingkungan kerja : production, staging, development, dan testing.
 
+**instalasi**
 
-
-
-
-
-
-
-
-
-
-
-
-
+Docker compose berjalan diatas docker engine, setelah menginstall docker (otomatis ada docker engine) terlebih dahulu dan sesuaikan dengan sistem operasi yang dimiliki. Jika OS adalah Mac atau Windows dan telah menginstall Docker Desktop / Docker Toolbox (untuk Windows 10 Home dan Edition ke bawah), maka docker-compose sudah terdapat di dalamnya.
 
 
 
